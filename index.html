@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web-Based Browser with Bookmarks</title>
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            font-family: Arial, sans-serif;
+        }
+        #address-bar {
+            height: 50px;
+            background-color: #f0f0f0;
+            display: flex;
+            align-items: center;
+            padding: 0 10px;
+        }
+        #address-input {
+            flex: 1;
+            height: 30px;
+            padding: 5px;
+        }
+        #go-button {
+            height: 40px;
+            margin-left: 10px;
+        }
+        #bookmark-list {
+            list-style: none;
+            padding: 0;
+        }
+        .bookmark-item {
+            cursor: pointer;
+            padding: 5px;
+            border-bottom: 1px solid #ccc;
+        }
+        #browser-frame {
+            width: 100%;
+            height: calc(100vh - 100px);
+            border: none;
+        }
+    </style>
+</head>
+<body>
+    <div id="address-bar">
+        <input type="text" id="address-input" placeholder="Enter URL">
+        <button id="go-button">Go</button>
+    </div>
+    <ul id="bookmark-list"></ul>
+    <iframe id="browser-frame"></iframe>
+
+    <script>
+        const addressInput = document.getElementById('address-input');
+        const goButton = document.getElementById('go-button');
+        const bookmarkList = document.getElementById('bookmark-list');
+        const browserFrame = document.getElementById('browser-frame');
+
+        // Sample bookmarks
+        const bookmarks = [
+            { title: 'Google', url: 'https://www.google.com' },
+            { title: 'GitHub', url: 'https://github.com' },
+            { title: 'OpenAI', url: 'https://openai.com' },
+        ];
+
+        // Load bookmarks
+        function loadBookmarks() {
+            bookmarks.forEach((bookmark) => {
+                const bookmarkItem = document.createElement('li');
+                bookmarkItem.textContent = bookmark.title;
+                bookmarkItem.classList.add('bookmark-item');
+                bookmarkItem.addEventListener('click', () => navigateToUrl(bookmark.url));
+                bookmarkList.appendChild(bookmarkItem);
+            });
+        }
+
+        // Add new bookmark
+        function addBookmark(title, url) {
+            bookmarks.push({ title, url });
+            const bookmarkItem = document.createElement('li');
+            bookmarkItem.textContent = title;
+            bookmarkItem.classList.add('bookmark-item');
+            bookmarkItem.addEventListener('click', () => navigateToUrl(url));
+            bookmarkList.appendChild(bookmarkItem);
+        }
+
+        goButton.addEventListener('click', () => {
+            navigateToUrl(addressInput.value);
+        });
+
+        function navigateToUrl(url) {
+            if (!url.startsWith('http://') && !url.startsWith('https://')) {
+                url = 'http://' + url;
+            }
+            addressInput.value = url;
+            browserFrame.src = url;
+        }
+
+        // Initialize bookmarks
+        loadBookmarks();
+    </script>
+</body>
+</html>
