@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Live Chat App</title>
+    <!-- Add Bootstrap CSS -->
+    <link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css">
+    <!-- Add custom CSS -->
+    <style>
+        body {
+            background-color: #f7f7f7;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            min-height: 100vh;
+        }
+
+        .chat-container {
+            max-width: 600px;
+            width: 100%;
+            margin-top: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+            background-color: #fff;
+        }
+
+        .header {
+            background-color: #007bff;
+            color: #fff;
+            padding: 10px;
+            border-radius: 10px 10px 0 0;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .chat-box {
+            height: 400px;
+            overflow-y: scroll;
+            padding: 10px;
+        }
+
+        .message {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .avatar {
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            margin-right: 10px;
+        }
+
+        .message-content {
+            background-color: #f2f2f2;
+            padding: 10px;
+            border-radius: 10px;
+        }
+
+        .message-info {
+            font-size: 12px;
+            color: #888;
+            margin-top: 5px;
+        }
+
+        .input-container {
+            display: flex;
+            align-items: center;
+            padding: 10px;
+            border-top: 1px solid #ccc;
+            background-color: #f7f7f7;
+        }
+
+        .input-container input {
+            flex: 1;
+            padding: 8px;
+            font-size: 16px;
+            border: none;
+            border-radius: 20px;
+            outline: none;
+        }
+
+        .send-button {
+            margin-left: 10px;
+            padding: 8px 20px;
+            font-size: 16px;
+            background-color: #007bff;
+            color: #fff;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="chat-container">
+        <div class="header">
+            <h2>Live Chat App</h2>
+            <button onclick="loginWithGoogle()">Log in with Google</button>
+        </div>
+        <div class="chat-box" id="chat-box">
+            <!-- Chat messages will be displayed here -->
+        </div>
+        <div class="input-container" id="chat-inputs" style="display: none;">
+            <input type="text" id="message" placeholder="Type your message">
+            <button class="send-button" onclick="sendMessage()">Send</button>
+        </div>
+    </div>
+
+    <!-- Add Firebase JS SDK -->
+    <script src="https://www.gstatic.com/firebasejs/10.1.0/firebase-app.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.1.0/firebase-auth.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.1.0/firebase-database.js"></script>
+
+    <script>
+        // Your web app's Firebase configuration
+        const firebaseConfig = {
+            apiKey: "AIzaSyDfaw8Ksidq7p1dkwPc9bzZdieW4dU6kZI",
+            authDomain: "chatbaby-45f8e.firebaseapp.com",
+            projectId: "chatbaby-45f8e",
+            storageBucket: "chatbaby-45f8e.appspot.com",
+            messagingSenderId: "465748149094",
+            appId: "465748149094",
+            measurementId: "G-BP13SFGKCP" // Optional, remove this line if not used
+        };
+      
+        // Initialize Firebase
+        firebase.initializeApp(firebaseConfig);
+        const auth = firebase.auth();
+        const db = firebase.database();
+        const messagesRef = db.ref("messages");
+
+        // Rest of the JS code goes here
+        // (copy and paste the JS code from the previous response)
+    </script>
+</body>
+</html>
