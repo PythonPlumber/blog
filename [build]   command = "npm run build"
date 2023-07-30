@@ -1,0 +1,2 @@
+[build]
+  command = "npm init -y && npm run build"
